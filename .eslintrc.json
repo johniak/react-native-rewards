@@ -1,0 +1,53 @@
+{
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true,
+    "mocha": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": [
+    "mocha"
+  ],
+  "globals": {
+    "__DEV__": false,
+    "babelHelpers": false
+  },
+  "rules": {
+    "no-underscore-dangle": 0,
+    "no-return-assign": 0,
+    "max-len": 0,
+    "no-shadow": 0,
+    "react/jsx-filename-extension": 0,
+    "react/forbid-prop-types": 0,
+    "no-use-before-define": 0,
+    "no-unused-vars": 1,
+    "eqeqeq": 1,
+    "global-require": 0,
+    "class-methods-use-this": 0,
+    "react/sort-comp": 0,
+    "react/require-default-props": 0,
+    "react/jsx-tag-spacing": {
+      "closingSlash": "never",
+      "beforeSelfClosing": "always",
+      "afterOpening": "never",
+      "beforeClosing": "allow"
+    },
+    "radix": 0,
+    "react/prefer-stateless-function": 0,
+    "no-plusplus": 0,
+    "no-console": 0,
+    "no-restricted-syntax": 0,
+    "no-continue": 0,
+    "guard-for-in": 0,
+    "no-debugger": 0,
+    "prefer-destructuring": 0,
+    "react/destructuring-assignment": 1,
+    "object-curly-newline": ["warn", {
+      "consistent": true,
+      "multiline": true
+    }]
+  }
+}
