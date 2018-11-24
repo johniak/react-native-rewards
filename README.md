@@ -1,53 +1,124 @@
 
 # react-native-rewards
+<p >
+  <!-- <a href="https://www.npmjs.com/package/react-native-rewards">
+  <img alt="npm dowloads" src="https://img.shields.io/npm/dm/react-native-rewards.svg"/></a> -->
+  <a href="https://www.npmjs.com/package/react-native-rewards"><img alt="npm version" src="https://badge.fury.io/js/react-native-rewards.svg"/></a>
+</p>
 
+Library is strongly inspired by [react-rewards](https://github.com/thedevelobear/react-rewards) created by [The Develobear](https://medium.com/@thedevelobear)!
+
+<p align="center">
+<img alt='react-native-rewards demo' src="https://thumbs.gfycat.com/FancyBriskBluegill-size_restricted.gif"/>
+</p>
 ## Getting started
 
 `$ npm install react-native-rewards --save`
 
-### Mostly automatic installation
+`$ yarn add react-native-root-view-background`
 
-`$ react-native link react-native-rewards`
-
-### Manual installation
-
-
-#### iOS
-
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-rewards` and add `RNRewards.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNRewards.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
-
-#### Android
-
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.reactlibrary.RNRewardsPackage;` to the imports at the top of the file
-  - Add `new RNRewardsPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-rewards'
-  	project(':react-native-rewards').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-rewards/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-rewards')
-  	```
-
-#### Windows
-[Read it! :D](https://github.com/ReactWindows/react-native)
-
-1. In Visual Studio add the `RNRewards.sln` in `node_modules/react-native-rewards/windows/RNRewards.sln` folder to their solution, reference from their app.
-2. Open up your `MainPage.cs` app
-  - Add `using Rewards.RNRewards;` to the usings at the top of the file
-  - Add `new RNRewardsPackage()` to the `List<IReactPackage>` returned by the `Packages` method
+Library is 100% javascript so, there is no need to do native linking
 
 
 ## Usage
-```javascript
-import RNRewards from 'react-native-rewards';
 
-// TODO: What to do with the module?
-RNRewards;
+using props:
+
+```javascript
+import RewardsComponent from 'react-native-rewards';
+import React, { Component, createRef } from 'react';
+
+class App extends Component {
+  state={
+    animationState: 'rest',
+  }
+
+  render() {
+    const { animationState } = this.state;
+    return (
+      <RewardsComponent
+        animationType="confetti"
+        state={animationState}
+        onRest={() => this.setState({ animationState: 'rest' })}
+      >
+        <TouchableOpacity
+          onPress={() => this.setState({ animationState: 'reward' })}
+          style={styles.buttonProps}
+        >
+          <Text style={styles.buttonText}>+</Text>
+        </TouchableOpacity>
+      </RewardsComponent>
+    )
+  }
+}
 ```
-  
+
+using ref:
+
+```javascript
+import RewardsComponent from 'react-native-rewards';
+import React, { Component, createRef } from 'react';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.rewardsComponent = createRef();
+  }
+
+  render() {
+    return (
+       <RewardsComponent
+        ref={this.rewardsComponent}
+        animationType="emoji"
+      >
+        <TouchableOpacity
+          onPress={() => this.rewardsComponent.current.rewardMe()}
+          style={styles.button}
+        >
+          <Image source={require('./assets/cup.png')}
+           style={styles.icon}/>
+        </TouchableOpacity>
+      </RewardsComponent>
+    )
+  }
+}
+```
+
+## Props
+|         name         	|      type      	|                          description                          	| required 	|     default     	|
+|:--------------------:	|:--------------:	|:-------------------------------------------------------------:	|:--------:	|:---------------:	|
+| **`children`**       	| React Element  	| content to animate e.g. Button                                	|    YES   	|                 	|
+| **`initialSpeed`**   	| Number/Float   	| initial speed of partices                                     	|    NO    	| `1`              	|
+| **`spread`**         	| Number/Float   	| Multiplier of distance beetween partices                      	|    NO    	| `1`              	|
+| **`deacceleration`** 	| Number/Float   	| Multiplier how fast partices deaccelerate in firt phase       	|    NO    	| `1`              	|
+| **`rotationXSpeed`** 	| Number/Float   	| Rotation speed multiplier in X axis                           	|    NO    	| `5`              	|
+| **`rotationZSpeed`** 	| Number/Float   	| Rotation speed multiplier in Z axis                           	|    NO    	| `5`               |
+| **`particiesCount`** 	| Number/Integer 	| Partices count in reward animation                            	|    NO    	| `20`              |
+| **`colors`**         	| Array          	| Colors used to generate confetti                              	|    NO    	| Some colors :)  	|
+| **`emoji`**          	| Array          	| Emojis used to generate confetti                              	|    NO    	| `['👍','😊','🎉']` |
+| **`animationType`**  	| String         	| Type of animation `confetti`/`emoji`                          	|    NO    	| `confetti`        |
+| **`state`**          	| String         	| State of animation, changing of this value triggers animation 	|    NO    	| `rest`            |
+| **`onRest`**         	| Function       	| Callback when animation goes to rest state                    	|    NO    	|                 	|
+
+
+## Methods
+
+You can call this method by using refs of component
+* **`rewardMe`** - Triggers reward animation
+* **`punishMe`** - Triggers punish animation
+
+## Notes for local development
+You need to have facebook watchman installed
+
+
+1. `cd example`
+2. `yarn`
+4. `yarn start`
+5. `yarn run sync` in another terminal window (doesn't matter where)
+
+If you have any issues, you can clear your watches using `watchman watch-del-all` and try again.
+
+## Author
+
+Feel free to ask me qustion on Twitter [@JanRomaniak](https://www.twitter.com/JanRomaniak)!
+

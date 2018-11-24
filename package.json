@@ -1,16 +1,28 @@
 {
   "name": "react-native-rewards",
   "version": "1.0.0",
-  "description": "",
+  "description": "This package lets you easily add microinteractions to your app and reward users with the rain of confettis or flying emoji in seconds.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "keywords": [
-    "react-native"
+    "android",
+    "ios",
+    "react-native",
+    "react",
+    "react-component",
+    "confetti",
+    "react-rewards",
+    "react-native-rewards"
   ],
-  "author": "",
-  "license": "",
+  "author": "Jan Romaniak",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johniak/react-native-rewards.git"
+  },
+  "homepage": "https://github.com/johniak/react-native-rewards",
+  "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.41.2",
     "react-native-windows": "0.41.0-rc.1",
