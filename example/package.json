@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "sync": "rm -rf ./node_modules/react-native-rewards; sane '/usr/bin/rsync -v -a --exclude .git --exclude example --exclude __tests__ --exclude node_modules .. ./node_modules/react-native-rewards/' . --watchman'"
+    "sync": "rm -rf ./node_modules/react-native-rewards; sane '/usr/bin/rsync -v -a --exclude .git --exclude example --exclude __tests__ --exclude node_modules .. './node_modules/react-native-rewards/' . --watchman'"
   },
   "dependencies": {
     "prop-types": "^15.6.2",
