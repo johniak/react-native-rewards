@@ -82,7 +82,7 @@ function generateConfettiAnimation({ transform, opacity, rotateX, rotateZ }, ind
     // coast to a stop
     velocity: { x: xSpeed, y: ySpeed }, // velocity from gesture release
     deceleration: 0.989 + (1 - deacceleration) / 100,
-    useNativeDriver: useNativeDriver,
+    useNativeDriver,
   });
 
   const duration = 2000 + Math.random() * 100;
@@ -91,7 +91,7 @@ function generateConfettiAnimation({ transform, opacity, rotateX, rotateZ }, ind
     {
       toValue: 100 + Math.random() * 100, // Animate to opacity: 1 (opaque)
       duration, // Make it take a while
-      useNativeDriver: useNativeDriver,
+      useNativeDriver,
     },
   );
   const disapearAnimation = Animated.timing( // Animate over time
@@ -99,7 +99,7 @@ function generateConfettiAnimation({ transform, opacity, rotateX, rotateZ }, ind
     {
       toValue: 0, // Animate to opacity: 1 (opaque)
       duration, // Make it take a while
-      useNativeDriver: useNativeDriver,
+      useNativeDriver,
     },
   );
   const rotateXAnimation = Animated.timing(
@@ -107,7 +107,7 @@ function generateConfettiAnimation({ transform, opacity, rotateX, rotateZ }, ind
     {
       toValue: (Math.random() * 3) * rotationXSpeed,
       duration,
-      useNativeDriver: useNativeDriver,
+      useNativeDriver,
     },
   );
   const rotateZAnimation = Animated.timing(
@@ -115,7 +115,7 @@ function generateConfettiAnimation({ transform, opacity, rotateX, rotateZ }, ind
     {
       toValue: (Math.random() * 5) * rotationZSpeed,
       duration,
-      useNativeDriver: useNativeDriver,
+      useNativeDriver,
     },
   );
 
