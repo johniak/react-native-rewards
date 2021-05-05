@@ -104,9 +104,13 @@ class RewardsComponent extends Component {
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           {items}
         </View>
-        <SpringAnim pose={state}>
+        {this.props.shake
+        ? <SpringAnim pose={state}>
           {children}
         </SpringAnim>
+        : <View>
+          {children}
+        </View>}
       </View>
     );
   }
@@ -125,6 +129,7 @@ RewardsComponent.propTypes = {
   state: PropTypes.oneOf(['rest', 'reward', 'punish']),
   onRest: PropTypes.func,
   useNativeDriver: PropTypes.bool,
+  shake: PropTypes.bool,
 };
 
 RewardsComponent.defaultProps = {
@@ -150,5 +155,6 @@ RewardsComponent.defaultProps = {
   state: 'rest',
   onRest: () => {},
   useNativeDriver: true,
+  shake: true,
 };
 export default RewardsComponent;
