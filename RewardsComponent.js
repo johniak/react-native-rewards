@@ -45,8 +45,8 @@ class RewardsComponent extends Component {
   }
 
   get animationParams() {
-    const { initialSpeed, spread, deacceleration, rotationXSpeed, rotationZSpeed } = this.props;
-    const params = { initialSpeed, spread, deacceleration, rotationXSpeed, rotationZSpeed };
+    const { initialSpeed, spread, deacceleration, rotationXSpeed, rotationZSpeed, useNativeDriver } = this.props;
+    const params = { initialSpeed, spread, deacceleration, rotationXSpeed, rotationZSpeed, useNativeDriver };
     return params;
   }
 
@@ -104,9 +104,13 @@ class RewardsComponent extends Component {
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           {items}
         </View>
-        <SpringAnim pose={state}>
+        {this.props.shake
+        ? <SpringAnim pose={state}>
           {children}
         </SpringAnim>
+        : <View>
+          {children}
+        </View>}
       </View>
     );
   }
@@ -124,6 +128,8 @@ RewardsComponent.propTypes = {
   animationType: PropTypes.oneOf(['confetti', 'emoji']),
   state: PropTypes.oneOf(['rest', 'reward', 'punish']),
   onRest: PropTypes.func,
+  useNativeDriver: PropTypes.bool,
+  shake: PropTypes.bool,
 };
 
 RewardsComponent.defaultProps = {
@@ -148,5 +154,7 @@ RewardsComponent.defaultProps = {
   animationType: 'confetti',
   state: 'rest',
   onRest: () => {},
+  useNativeDriver: true,
+  shake: true,
 };
 export default RewardsComponent;
